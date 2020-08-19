@@ -1,7 +1,18 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './styles.css';
 
+import api from '../services/api';
+
 const Home = () => {
+
+
+  useEffect(() => {
+    api.get('posts').then(response => {
+      console.log(response)
+    });
+  }, []);
+
+
   return (
     <div id="page-home">
       <header className="header">
