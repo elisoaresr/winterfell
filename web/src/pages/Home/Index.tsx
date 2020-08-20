@@ -3,15 +3,20 @@ import './styles.css';
 
 import api from '../services/api';
 
-const Home = () => {
+interface Item {
+  id: number;
+  title: string;
+}
 
+
+const Home = () => {
+  const [items, setItems] = useState<Item[]>([]);
 
   useEffect(() => {
     api.get('posts').then(response => {
-      console.log(response)
+      setItems(response.data);
     });
   }, []);
-
 
   return (
     <div id="page-home">
@@ -25,7 +30,13 @@ const Home = () => {
         </div>
       </header>
       <div className="main">
-        Content
+        <ul className="items-grid">
+          {items.map(item => (
+            <li key={item.id}>
+              <span>{item.title}</span>
+            </li>
+          ))}
+        </ul>
       </div>
       <div className="aside">
         Breaking News
