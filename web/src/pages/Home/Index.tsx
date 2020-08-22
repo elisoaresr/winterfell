@@ -8,7 +8,6 @@ interface Item {
   title: string;
 }
 
-
 const Home = () => {
   const [items, setItems] = useState<Item[]>([]);
 
