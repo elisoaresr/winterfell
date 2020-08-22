@@ -5,14 +5,15 @@ import api from '../services/api';
 
 interface Item {
   id: number;
-  title: string;
+  features: string;
+  description: string;
 }
 
 const Home = () => {
   const [items, setItems] = useState<Item[]>([]);
 
   useEffect(() => {
-    api.get('posts').then(response => {
+    api.get('plans').then(response => {
       setItems(response.data);
     });
   }, []);
@@ -32,7 +33,8 @@ const Home = () => {
         <ul className="items-grid">
           {items.map(item => (
             <li key={item.id}>
-              <span>{item.title}</span>
+              <span>{item.description}</span>
+              <span>{item.features}</span>
             </li>
           ))}
         </ul>
